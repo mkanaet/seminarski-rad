@@ -5,9 +5,10 @@ import Messages from "./components/Messages";
 import RandomName from "./components/RandomName";
 
 function App() {
-  const [enteredText, setEnteredText] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [randomName, setRandomName] = useState("");
   const [randomColor, setRandomColor] = useState("#7fffd4");
+
   useEffect(() => {
     const animals = [
       "meerkat",
@@ -398,18 +399,56 @@ function App() {
       setRandomColor("#" + Math.floor(Math.random() * 0xffffff).toString(16));
     };
   }, [setRandomName, setRandomColor]);
-  console.log(randomColor);
+  // console.log(randomColor);
 
-  function getEnteredText(newText) {
-    setEnteredText((enteredText) => {
-      return [newText, ...enteredText];
+  const [state, setState] = useState({
+    messages: [],
+    member: {
+      username: randomName,
+      color: randomColor,
+    },
+  });
+  useEffect(() => {
+    const drone = new window.Scaledrone("ySrn6lZfkjkdcEMk", {
+      data: state.member,
     });
+    drone.on("open", (error) => {
+      if (error) {
+        return console.error(error);
+      }
+      console.log("Successfully connected to Scaledrone");
+      const member = { ...state.member };
+      member.id = drone.clientId;
+      setState({ member });
+    });
+    const room = drone.subscribe("chat-room");
+    room.on("open", (error) => {
+      if (error) {
+        return console.error(error);
+      }
+      console.log("Successfully joined room");
+    });
+    room.on("data", (data, member) => {
+      const messages = state.messages;
+      messages.push({ member, text: data });
+      setState({ messages });
+    });
+  }, []);
+
+  function getEnteredText(message) {
+    setMessages((messages) => {
+      return [message, ...messages];
+    });
+    //drone.publish({
+    //  room: "chat-room",
+    //  message: "text",
+    //});
   } //dohvaća uneseni tekst iz Inputa
 
   return (
     <div className="App">
       <Messages
-        text={enteredText}
+        text={messages}
         name={randomName}
         color={randomColor}
       ></Messages>
