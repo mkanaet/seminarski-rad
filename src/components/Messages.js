@@ -1,13 +1,16 @@
 import React from "react";
 import OneMessage from "./OneMessage";
+
 function Messages(props) {
+  const { messages } = props;
+  console.log({ messages });
   return (
     <ul className="container">
-      {props.text.map((data, id) => (
+      {messages.map((message, id) => (
         <OneMessage
-          text={data}
-          name={props.name}
-          color={props.color}
+          text={message.text}
+          name={message.member.clientData.username}
+          color={message.member.clientData.color}
           key={id}
         ></OneMessage>
       ))}

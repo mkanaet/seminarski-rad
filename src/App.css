@@ -6,7 +6,7 @@
   padding: 1%;
   border: 1px solid black;
   display: flex;
-  flex-flow: column-reverse wrap;
+  flex-flow: column wrap;
   justify-content: right;
   justify-items: right;
   text-align: right;

@@ -9,7 +9,7 @@ function Input(props) {
 
   function onSubmitHandler(event) {
     event.preventDefault();
-    props.textInput(enteredText);
+    props.onSendMessage(enteredText);
     setEnteredText("");
   }
 

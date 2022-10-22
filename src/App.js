@@ -396,10 +396,6 @@ function randomColor() {
 }
 
 class App extends Component {
-  //const [messages, setMessages] = useState([]);
-  //const [randomName, setRandomName] = useState("");
-  //const [randomColor, setRandomColor] = useState("#7fffd4");
-
   state = {
     messages: [],
     member: {
@@ -410,8 +406,6 @@ class App extends Component {
 
   constructor() {
     super();
-    console.log(this.state.member.username);
-    console.log(this.state.member.color);
     this.drone = new window.Scaledrone("ySrn6lZfkjkdcEMk", {
       data: this.state.member,
     });
@@ -419,13 +413,11 @@ class App extends Component {
       if (error) {
         return console.error(error);
       }
-      console.log("Connected to Scaladrone!");
       const member = { ...this.state.member };
       member.id = this.drone.clientId;
       this.setState({ member });
     });
-    const room = this.drone.subscribe("chat-room");
-
+    const room = this.drone.subscribe("observable-room");
     room.on("data", (data, member) => {
       const messages = this.state.messages;
       messages.push({ member, text: data });
@@ -436,24 +428,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="App-header">
+          <h1>My Chat App</h1>
+        </div>
         <Messages
-          text={this.state.messages}
-          name={this.state.member.username}
-          color={this.state.member.color}
-        ></Messages>
-        <Input textInput={this.getEnteredText}></Input>
+          messages={this.state.messages}
+          currentMember={this.state.member}
+        />
+        <Input onSendMessage={this.onSendMessage} />
       </div>
     );
   }
-  getEnteredText = (message) => {
-    //setMessages((messages) => {
-    //  return [message, ...messages];
-    //});
+
+  onSendMessage = (message) => {
     this.drone.publish({
-      room: "chat-room",
+      room: "observable-room",
       message,
     });
-  }; //dohvaća uneseni tekst iz Inputa
+  };
 }
 
 export default App;
