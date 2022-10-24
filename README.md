@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+Webchat app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Funkcionalnost:
 
-## Available Scripts
+- prilikom otvaranja generira random ime i boju polja u kojoj se ispisuje poruka.
+- ime se sastoji od naziva neke životinje i naziva stvari.
+- ostaruje se povezivanje sa Scaledrone i spaja se sa sobom "observable-room" gdje se objavljuju poruke.
+- Unosom teksta i pritiskom enter ili "send" šaljese poruka koja se prikazuje u središnjem polju s desne strane.
+- poruke drugih korisnika se pojavljuju s lijeve strane.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tijek izrade aplikacije:
+Aplikacija je strukturirana je tri komponente. Prva verzija je naprevljena s funkcijskim komponentama uključujući i
+App.js. U Apps.js prvo korištena kombinacija useEffecta i useStatea gdje se generira random ime i boja (randomlist.com) koja se šalje komponenti Messages. Također je sadržavala komponentu Input kojoj je slan props funkcija koja dohvaća uneseni tekst. Iz Messages primljeni tekst, ime i boja koji se primaju u obliku arreya šalju se komponenti OneMessage kao pojedini elementi korištenjem metode map. OneMessage stvara li koji se ubacuje u ul što je Messages komponenta. Takav oblik aplikacije bez nekog posebnog css-a je i dalje na mester grani na GitHubu. Trebalo je još samo spojiti Scaledrone.
+Dugotrajnim pregledom dokumentacije našao sam upute za mnoge tehnologije ali ne i za React. Odnosno našao sam jedan tutorial koji ima class komponente. Nakon mnogih pokušaja da nađem rješenje koje bi omogučilo zadržavanje svega što sam napravio to na kraju nisam našao rješenje. Najveći problem je bio kako i čime nadomjestiti funkcionalnost constructora koji nudi class komponenta. Gotovo da nema ničega na webu koji se bavi tim pitanjem.
+Odlučio sam prijeći na class komponentu App.js te je tada sve funkcioniralo.
+S obzirom na veličinu aplikacije odlučio sam sav css zadržati u jednom fileu.

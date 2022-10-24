@@ -3,7 +3,8 @@ import OneMessage from "./OneMessage";
 
 function Messages(props) {
   const { messages } = props;
-  console.log({ messages });
+  const currentUser = props.currentMember.username;
+
   return (
     <ul className="container">
       {messages.map((message, id) => (
@@ -12,6 +13,7 @@ function Messages(props) {
           name={message.member.clientData.username}
           color={message.member.clientData.color}
           key={id}
+          me={currentUser}
         ></OneMessage>
       ))}
     </ul>

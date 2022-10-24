@@ -1,46 +1,91 @@
+body {
+  margin: 0px;
+  height: 100vh;
+  background-color: #6363bf;
+  background-image: url(scaledrone.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
 .container {
-  width: 50%;
+  width: 70%;
   height: fit-content;
   margin: auto;
   margin-bottom: 5px;
   padding: 1%;
-  border: 1px solid black;
   display: flex;
   flex-flow: column wrap;
   justify-content: right;
   justify-items: right;
   text-align: right;
   align-content: flex-end;
+  background-color: white;
+  border-radius: 8px;
 }
 
 form {
-  width: 50%;
+  width: 70%;
   height: 50%;
   margin: auto;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   padding: 1%;
-  border: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  justify-items: center;
+  background-color: #adade2;
+  border-radius: 8px;
+}
+
+.header {
+  width: 80%;
+  height: 40%;
+  margin: 10px auto;
+  padding: 1%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  background-color: #6363bf;
+  border-radius: 8px;
+  color: white;
+}
+
+.header_items {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
   justify-items: center;
 }
 
 input {
   width: 70%;
-  height: 90%;
+  padding: 1% 5%;
+  line-height: 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  padding: 1% 5%;
+  border: none;
 }
 
 button {
-  height: 70%;
+  width: fit-content;
+  background-color: #6363bf;
+  color: white;
+  margin-left: 5px;
+  border-radius: 8px;
+  border: none;
 }
 
 .name {
   width: fit-content;
-  color: brown;
+  color: #6363bf;
   display: flex;
   justify-content: right;
   text-align: right;
+  margin-bottom: 2px;
 }
 
 .message {
@@ -50,10 +95,9 @@ button {
   display: flex;
   justify-content: right;
   border-radius: 5px;
-
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-all;
+  white-space: normal;
 }
 
 .name_container {
@@ -65,7 +109,16 @@ button {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
-
+.name_container_not {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
 li {
   list-style: none;
+  width: 100%;
+  margin-bottom: 5%;
 }
